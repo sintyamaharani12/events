@@ -14,3 +14,13 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Route::group(['prefix'=> 'activity'], function(){
+    Route::get('index', 'ActivityController@index')->name('activity');
+
+    Route::get('create','ActivityController@create')->name('activity.create');
+});
