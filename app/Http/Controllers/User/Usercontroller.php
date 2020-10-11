@@ -1,17 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use App\Activity;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ActivityController extends Controller
+class Usercontroller extends Controller
 {
-    public function __construct()
-    {
-        $this->activity = new Activity();
-    }
     /**
      * Display a listing of the resource.
      *
@@ -19,12 +14,7 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        // $date = Carbon::now('Asia/Jakarta')->subYears(2000);
-        // $tahun = substr($date['year'], 2,2);
-        
-        dd($this->activity->generateCode());
-        // dd(Carbon::now());
-        // return view("backend.kegiatan.index");
+        //
     }
 
     /**
@@ -34,7 +24,7 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view("backend.kegiatan.create");
+        //
     }
 
     /**
@@ -65,9 +55,9 @@ class ActivityController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit()
+    public function edit($id)
     {
-        return view("backend.kegiatan.edit");
+        //
     }
 
     /**

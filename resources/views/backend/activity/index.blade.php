@@ -5,7 +5,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="mb-3">
-                <a href="{{route('kegiatans.create')}}" class="btn btn-outline-primary">Tambah Kegiatan</a>
+                <a href="{{route('activity.create')}}" class="btn btn-outline-primary">Tambah Kegiatan</a>
             </div>
 
             <div class="card border-0 shadow">
@@ -24,7 +24,7 @@
                                 <th>Status</th>
                                 <th>Option</th>
                             </tr>
-                        </thead>
+                        </thead>        
                         <tbody>
                             <tr>
                                 <td>gecollll</td>
@@ -33,8 +33,8 @@
                                 <td>transformasi</td>
                                 <td>Kepp yo</td>
                                 <td>
-                                    <a href="" class="btn btn-outline-primary btn-sm">Edit</a>
-                                    <a href="" class="btn btn-outline-danger btn-sm">Hapus</a>
+                                    <a href="{{route('activity.tampil-fromEdit')}}" class="btn btn-outline-primary btn-sm">Edit</a>
+                                    <a href="http://" class="btn btn-outline-danger btn-sm">Hapus</a>
                                 </td>
                             </tr>
                         </tbody>
