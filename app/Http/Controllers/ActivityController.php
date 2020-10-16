@@ -5,9 +5,11 @@ namespace App\Http\Controllers;
 use App\Activity;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class ActivityController extends Controller
 {
+    
     public function __construct()
     {
         $this->activity = new Activity();
@@ -19,12 +21,10 @@ class ActivityController extends Controller
      */
     public function index()
     {
-        // $date = Carbon::now('Asia/Jakarta')->subYears(2000);
-        // $tahun = substr($date['year'], 2,2);
         
-        dd($this->activity->generateCode());
-        // dd(Carbon::now());
-        // return view("backend.kegiatan.index");
+        $activitys = Activity::all();
+
+        return view("backend.activity.index",compact('activitys'));
     }
 
     /**
@@ -34,7 +34,9 @@ class ActivityController extends Controller
      */
     public function create()
     {
-        return view("backend.kegiatan.create");
+        $getcode = $this->activity->generateCode();
+        
+        return view("backend.activity.create", compact('getcode'));
     }
 
     /**
@@ -43,11 +45,40 @@ class ActivityController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store()
     {
-        //
+        $activity = Activity::create($this->validateRequest());
+        $this->storeImage($activity);
+        return redirect()->back()->with(['success' => 'Activity berhasil dibuat' ]);
     }
 
+    private function validateRequest(){
+        return tap(request()->validate([
+            'code_activity' => 'required',
+            'name'          => 'required',
+            'date'          => 'required',
+            'information'   => 'required',
+            'status'        => 'required',
+            'price'         => 'required',
+            'images'        => 'file|image|max:5000',
+            'capacity'      => 'required',
+        ]), function(){
+            if(request()->hasFIle('images')){
+                request()->validate([
+                    'images'  => 'file|image|max:5000',
+                ]);
+            }
+        }); 
+    }
+    private function storeImage($activity){
+        if(request()->has('images')){
+            $activity->update([
+                'images' => request()->images->store('uploads','public'),
+            ]);
+            $image = Image::make(public_path('storage/'. $activity->images))->fit(300,300,null, 'top-left');
+            $image->save();
+        }
+    }
     /**
      * Display the specified resource.
      *

@@ -26,17 +26,22 @@
                             </tr>
                         </thead>        
                         <tbody>
+                            @foreach($activitys as $activity)
                             <tr>
-                                <td>gecollll</td>
-                                <td>why</td>
-                                <td>24/03/03</td>
-                                <td>transformasi</td>
-                                <td>Kepp yo</td>
+                                <td><a href="{{route('activity.tampil-fromEdit')}}" class="btn btn-outline-primary btn-sm">{{$activity->code_activity}}</a><td>
+                                <td>{{$activity->name}}</td>
+                                <td>{{$activity->date}}</td>
+                                <td>{{$activity->information}}</td>
+                                <td>{{$activity->status}}</td>
                                 <td>
-                                    <a href="{{route('activity.tampil-fromEdit')}}" class="btn btn-outline-primary btn-sm">Edit</a>
+                                <img src="{{asset('storage/'. $activity->images)}}" alt="" class="rounded" weight="50" height="50">
+                                </td>
+                                <td>
+                                    
                                     <a href="http://" class="btn btn-outline-danger btn-sm">Hapus</a>
                                 </td>
                             </tr>
+                                @endforeach
                         </tbody>
                     </table>
                 </div>

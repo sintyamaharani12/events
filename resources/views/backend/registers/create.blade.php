@@ -8,7 +8,7 @@
             <div class="col-md-12">
                 <div class="card border-0">
                     <div class="card-body">
-                        <form action="">
+                        <form action="{{route('activitys.save-new-activity}})">
 
                             <div class="row">
                                 <div class="col-md-6">

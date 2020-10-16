@@ -21,6 +21,8 @@ class CreateActivitysTable extends Migration
             $table->string('information');
             $table->string('status');
             $table->string('price');
+            $table->string('images');
+            $table->string('capacity');
             $table->timestamps();
         });
     }
