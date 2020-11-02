@@ -18,8 +18,6 @@
                         <thead>
                             <tr>
                                 <th>Kode kegiatan</th>
-                                <th>Nama Kegiatan</th>
-                                <th>Tanggal</th>
                                 <th>Informasi</th>
                                 <th>Status</th>
                                 <th>Option</th>
@@ -28,11 +26,11 @@
                         <tbody>
                             @foreach($activitys as $activity)
                             <tr>
-                                <td><a href="{{route('activity.tampil-fromEdit')}}" class="btn btn-outline-primary btn-sm">{{$activity->code_activity}}</a><td>
+                                <td><a href="{{route('activity.tampil-fromEdit','$activity->id')}}" class="btn btn-outline-primary btn-sm">{{$activity->code_activity}}</a><td>
                                 <td>{{$activity->name}}</td>
-                                <td>{{$activity->date}}</td>
                                 <td>{{$activity->information}}</td>
                                 <td>{{$activity->status}}</td>
+                                <td>{{$activity->option}}</td>
                                 <td>
                                 <img src="{{asset('storage/'. $activity->images)}}" alt="" class="rounded" weight="50" height="50">
                                 </td>
@@ -42,7 +40,7 @@
                                 </td>
                             </tr>
                                 @endforeach
-                        </tbody>
+                        </body>
                     </table>
                 </div>
             </div>

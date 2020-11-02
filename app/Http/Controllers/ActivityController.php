@@ -52,10 +52,11 @@ class ActivityController extends Controller
         return redirect()->back()->with(['success' => 'Activity berhasil dibuat' ]);
     }
 
-    private function validateRequest(){
+    private function validateRequest()
+    {
         return tap(request()->validate([
             'code_activity' => 'required',
-            'name'          => 'required',
+            'name_activity' => 'required',
             'date'          => 'required',
             'information'   => 'required',
             'status'        => 'required',
@@ -79,48 +80,21 @@ class ActivityController extends Controller
             $image->save();
         }
     }
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit()
+    public function edit($id)
     {
-        return view("backend.kegiatan.edit");
+        $activity = Activity::findOrFail($id);
+        return view("backend.kegiatan.edit",compact('activity'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+       public function update(Activity $activity)
+        
     {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+        $activity = Activity::create($this->validateRequest());
+        $this->storeImage($activity);
+        return redirect()->back()->with(['success' => 'Activity berhasil dibuat' ]);
     }
 }

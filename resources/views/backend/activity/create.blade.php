@@ -6,7 +6,7 @@
     <div class="col-md-6">
       <div class="card border-0 shadow">
         <div class="card-body">
-          <form action="{{route('backend.activity.save')}}" enctype="multipart/form-data" method="POST">
+          <form action="{{route('activity.save')}}" enctype="multipart/form-data" method="POST">
           @csrf
           @if(session('succes'))
             <div class="alert alert-success">
@@ -19,14 +19,15 @@
                     <label for="name">Kode Kegiatan</label>
                     <input type="text" name="code_activity" id="" class="form-control" value="{{$getcode}}" placeholder="" readonly>
                 </div>
-                {{$errors->first('name')}}
-              </div>
+
+                </div>
               <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Nama Kegiatan</label>
                     <input type="text" name="name" id="" class="form-control" placeholder="" >
                 </div>
               </div>
+                {{$errors->first('name')}}
               <div class="col-md-6">
                 <div class="form-group">
                     <label for="name">Tanggal</label>
@@ -60,7 +61,7 @@
               <div class="col-md-12">
                 <div class="form-group">
                     <label for="name">Informasi</label>
-                    <textarea name="status" id="" class="form-control"></textarea>
+                    <textarea name="informasion" id="" class="form-control"></textarea>
                 </div>
               </div> 
             </div>
